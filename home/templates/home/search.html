@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Search{% endblock title %}
+{% block body %}
+
+
+<div class="container my-3">
+    <h1>Search Result</h1>
+    {% if allpost|length < 1 %}
+        <h3>Search Result : {{ search_cont }} --not found</h3>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-8">
+            {% for post in allpost %}            
+            <div style="background-color: #D1F2EB;" class="my-3 p-4 rounded">
+                <h2 class="m-0"><a href="{% url 'blogpost' post.slug %}">{{post.title}}</a></h2>
+                <small>{{post.date}}</small>
+                <p class="my-3">{{post.content|slice:":200"}}</p>
+                <a href="{% url 'blogpost' post.slug %}" class="btn btn-info">Read More</a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-4 my-3">
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock body %}
